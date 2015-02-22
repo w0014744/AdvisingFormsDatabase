@@ -51,6 +51,8 @@ namespace AdvisingFormsDatabase.Controllers
 
         public Student MakeRecommendations (Student student)
         {
+            
+            
             List<BaseCourse> potentialCourses = student.StudentConcentration.RequiredCourses.ToList();
 
             foreach (Course takenCourse in student.CoursesTaken)
@@ -69,10 +71,63 @@ namespace AdvisingFormsDatabase.Controllers
             return student;
         }
 
+        public ActionResult Recommendation(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Student student = db.Students.Find(id);
+            if (student == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.ConcentrationID = new SelectList(db.Concentrations, "ID", "Name", student.ConcentrationID);
+
+            List<BaseCourse> potentialCourses = student.StudentConcentration.RequiredCourses.ToList();
+
+            return View(student);
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // GET: /Student/
         public ActionResult Index()
         {
             var students = db.Students.Include(s => s.StudentConcentration);
+
             return View(students.ToList());
         }
 
