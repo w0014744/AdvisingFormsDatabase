@@ -82,11 +82,18 @@ namespace AdvisingFormsDatabase.Controllers
             {
                 return HttpNotFound();
             }
+
+            Concentration conc = db.Concentrations.Find(student.ConcentrationID);
+
             ViewBag.ConcentrationID = new SelectList(db.Concentrations, "ID", "Name", student.ConcentrationID);
 
-            List<BaseCourse> potentialCourses = student.StudentConcentration.RequiredCourses.ToList();
+            Student modelStudent=  MakeRecommendations(student);//var model = db.Concentrations
+            //    .Where(r => r.ID == student.ConcentrationID);
 
-            return View(student);
+            //List<BaseCourse> potentialCourses = student.StudentConcentration.RequiredCourses.ToList();
+
+
+            return View(modelStudent);
 
         }
 
