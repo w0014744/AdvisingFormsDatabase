@@ -1,0 +1,58 @@
+﻿@model AdvisingFormsDatabase.Models.Course
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Course</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.BaseCourse.Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.BaseCourse.Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Student.FirstName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Student.FirstName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Semester)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Semester)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Grade)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Grade)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

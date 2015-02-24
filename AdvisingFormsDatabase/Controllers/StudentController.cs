@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using AdvisingFormsDatabase.Models;
 using AdvisingFormsDatabase.DAL;
+using AdvisingFormsDatabase.ViewModels;
 
 namespace AdvisingFormsDatabase.Controllers
 {
@@ -92,14 +93,41 @@ namespace AdvisingFormsDatabase.Controllers
 
 
 
+        public ActionResult AddCourses (int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Student student = db.Students.Find(id);
+
+            List<BaseCourse> availibleCourses = db.BaseCourses.ToList();
+
+            ViewData["AvailCourses"] = availibleCourses;
+
+            return View(student);
+
+        }
+
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult AddCourses (Student student)
+        //{
+
+        //}
 
 
 
+        public ActionResult AddCoursesVM (int? id)
+        {
+            Student student = db.Students.Find(id);
+            List<BaseCourse> availibleCourses = db.BaseCourses.ToList();
 
+            AddCourseViewModel vModel = new AddCourseViewModel(student, availibleCourses);
 
-
-
-
+            return View(vModel);
+        }
 
 
 

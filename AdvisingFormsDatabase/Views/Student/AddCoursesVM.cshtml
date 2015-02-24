@@ -1,0 +1,48 @@
+﻿@model AdvisingFormsDatabase.ViewModels.AddCourseViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddCourseVM</title>
+</head>
+<body>
+    <div> 
+        <p>Name: @Model.Student.FirstName @Model.Student.LastName</p>
+        <p>W#: @Model.Student.WNumber</p>
+    </div>
+
+    <div>
+        <p>Select the Courses You Have Taken</p>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <th>Course</th>
+                <th>Department</th>
+                <th>Number</th>
+                <th>Check if Taken</th>
+                <th>Semester</th>
+                <th>Grade</th>
+            </tr>
+            @foreach(var course in Model.AvailCourses)
+            {
+                <tr>
+                    <td>@course.Name</td>
+                    <td>@course.Department</td>
+                    <td>@course.CourseNumber</td>
+                    <td><input type="checkbox" id="@course.ID taken" /></td>
+                    <td><input type="text" id="@course.ID semester"/></td>
+                    <td><input type="text" id="@course.ID grade" /></td>
+                </tr>
+            }
+        </table>
+    </div>
+
+</body>
+</html>
