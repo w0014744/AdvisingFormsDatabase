@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -13,6 +14,7 @@ namespace AdvisingFormsDatabase.Models
         public int CourseNumber { get; set; }
         public int CreditHours { get; set; }
 
+ 
         public virtual ICollection<string> Prerequisites { get; set; }
 
         public BaseCourse()
