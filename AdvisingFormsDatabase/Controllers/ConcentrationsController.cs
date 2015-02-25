@@ -33,35 +33,30 @@ namespace AdvisingFormsDatabase.Controllers
             {
                 return HttpNotFound();
             }
-<<<<<<< HEAD
-           
-            List<BaseCourse> untakenCouses = new List<BaseCourse>();
-            foreach(BaseCourse baseCourse in concentration.RequiredCourses ){
-                 foreach(Course course in courseTaken ){
+            var advisingStudent = db.Students.Find(id);
 
-                     if (!baseCourse.ID.Equals(course.BaseCourseID))
-                     {
-                        
-                         untakenCouses.Add(baseCourse);
-                         break;
-                     }
-                     else { break; }
+            List<BaseCourse> untakenCouses = new List<BaseCourse>();
+            foreach (BaseCourse baseCourse in concentration.RequiredCourses)
+            {
+                foreach (Course course in courseTaken)
+                {
+
+                    if (!baseCourse.ID.Equals(course.BaseCourseID))
+                    {
+
+                        untakenCouses.Add(baseCourse);
+                        break;
+                    }
+                    else { break; }
 
                 }
-              
-            
-            }
-          
-           
 
+
+            }
 
             return View(untakenCouses);
 
-=======
-            return View(concentration);
->>>>>>> parent of f539101... View of Untaken Couses
         }
-
         // GET: Concentrations/Create
         public ActionResult Create()
         {
