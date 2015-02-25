@@ -24,16 +24,25 @@ namespace AdvisingFormsDatabase.Controllers
         // GET: Concentrations/Details/5
         public ActionResult Details(int? id)
         {
+
+            var advisingStudent = db.Students.Find(id);
+            Concentration concentration = db.Concentrations.Find(advisingStudent.ConcentrationID);
+            var courseTaken = db.Courses
+                .Where(r => r.StudentID == id);
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Concentration concentration = db.Concentrations.Find(id);
+            
+
             if (concentration == null)
             {
                 return HttpNotFound();
             }
-            var advisingStudent = db.Students.Find(id);
+           
+
+
 
             List<BaseCourse> untakenCouses = new List<BaseCourse>();
             foreach (BaseCourse baseCourse in concentration.RequiredCourses)

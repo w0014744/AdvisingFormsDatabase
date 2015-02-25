@@ -1,16 +1,15 @@
-﻿@model AdvisingFormsDatabase.Models.Concentration
-
+﻿@model IEnumerable<AdvisingFormsDatabase.Models.BaseCourse>
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Concentration @Model.Name</h2>
+<h2>Concentration </h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 
-@Html.Partial("_Concentrationview",Model.RequiredCourses)
+@Html.Partial("_Concentrationview",Model)
 
 

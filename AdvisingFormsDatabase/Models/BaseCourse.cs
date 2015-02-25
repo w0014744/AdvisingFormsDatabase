@@ -14,7 +14,8 @@ namespace AdvisingFormsDatabase.Models
         public int CourseNumber { get; set; }
         public int CreditHours { get; set; }
 
- 
+        public int? ParentItemId { get; set; }
+
         public virtual ICollection<string> Prerequisites { get; set; }
 
         public BaseCourse()
