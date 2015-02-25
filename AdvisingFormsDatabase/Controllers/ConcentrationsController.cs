@@ -28,12 +28,38 @@ namespace AdvisingFormsDatabase.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Concentration concentration = db.Concentrations.Find(id);
+            Student advisingStudent = db.Students.Find(id);
+            Concentration concentration = db.Concentrations.Find(advisingStudent.ConcentrationID);
+            var courseTaken=db.Courses
+                                      .Where(r=>r.StudentID==id);
+       
             if (concentration == null)
             {
                 return HttpNotFound();
             }
-            return View(concentration);
+           
+            List<BaseCourse> untakenCouses = new List<BaseCourse>();
+            foreach(BaseCourse baseCourse in concentration.RequiredCourses ){
+                 foreach(Course course in courseTaken ){
+
+                     if (!baseCourse.ID.Equals(course.BaseCourseID))
+                     {
+                        
+                         untakenCouses.Add(baseCourse);
+                         break;
+                     }
+                     else { break; }
+
+                }
+              
+            
+            }
+          
+            return View(untakenCouses);
+
+
+
+           // return Content("UNFOUND");
         }
 
         // GET: Concentrations/Create
