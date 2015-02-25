@@ -24,18 +24,63 @@ namespace AdvisingFormsDatabase.Controllers
         // GET: Concentrations/Details/5
         public ActionResult Details(int? id)
         {
+
+            var advisingStudent = db.Students.Find(id);
+            Concentration concentration = db.Concentrations.Find(advisingStudent.ConcentrationID);
+            var courseTaken = db.Courses
+                .Where(r => r.StudentID == id);
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Concentration concentration = db.Concentrations.Find(id);
+            
+
             if (concentration == null)
             {
                 return HttpNotFound();
             }
-            return View(concentration);
-        }
+           
 
+            List<BaseCourse> untakenCouses = new List<BaseCourse>();
+            foreach (BaseCourse baseCourse in concentration.RequiredCourses)
+            {
+                foreach (Course course in courseTaken)
+                {
+
+                    if (!baseCourse.ID.Equals(course.BaseCourseID))
+                    {
+
+                        untakenCouses.Add(baseCourse);
+                        break;
+                    }
+                    else { break; }
+
+                }
+
+
+            }
+            List<BaseCourse> recomCouses = new List<BaseCourse>();
+            foreach (BaseCourse untakenCourse in untakenCouses)
+            {
+                foreach (Course checkingCourse in courseTaken)
+                {
+                    if (untakenCourse.ParentItemId == checkingCourse.BaseCourseID)
+                    {
+
+
+                        recomCouses.Add(untakenCourse);
+                        break;
+
+                    }
+
+                }
+             }
+
+
+            return View(recomCouses);
+
+        }
         // GET: Concentrations/Create
         public ActionResult Create()
         {
