@@ -42,8 +42,6 @@ namespace AdvisingFormsDatabase.Controllers
             }
            
 
-
-
             List<BaseCourse> untakenCouses = new List<BaseCourse>();
             foreach (BaseCourse baseCourse in concentration.RequiredCourses)
             {
@@ -62,8 +60,25 @@ namespace AdvisingFormsDatabase.Controllers
 
 
             }
+            List<BaseCourse> recomCouses = new List<BaseCourse>();
+            foreach (BaseCourse untakenCourse in untakenCouses)
+            {
+                foreach (Course checkingCourse in courseTaken)
+                {
+                    if (untakenCourse.ParentItemId == checkingCourse.BaseCourseID)
+                    {
 
-            return View(untakenCouses);
+
+                        recomCouses.Add(untakenCourse);
+                        break;
+
+                    }
+
+                }
+             }
+
+
+            return View(recomCouses);
 
         }
         // GET: Concentrations/Create
