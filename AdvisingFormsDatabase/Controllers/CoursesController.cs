@@ -80,7 +80,7 @@ namespace AdvisingFormsDatabase.Controllers
             ViewBag.StudentID = new SelectList(db.Students, "ID", "FirstName", course.StudentID);
             return View(course);
         }
-
+         
         // POST: Courses/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.

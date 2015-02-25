@@ -81,6 +81,42 @@ namespace AdvisingFormsDatabase.Controllers
             return View(recomCouses);
 
         }
+
+
+        public ActionResult fillGrade([Bind(Prefix = "id")] int? studentId)
+        {
+            if (studentId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //Concentration concentration = db.Concentrations.Find(id);
+
+            var advisingStudent = db.Students.Find(studentId);
+
+            Concentration concentration = db.Concentrations.Find(advisingStudent.ConcentrationID);
+            var courseTaken = db.Courses
+                .Where(r => r.StudentID == studentId);
+
+            if (concentration == null)
+            {
+                return HttpNotFound();
+            }
+            return View(courseTaken);
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
         // GET: Concentrations/Create
         public ActionResult Create()
         {
@@ -103,6 +139,7 @@ namespace AdvisingFormsDatabase.Controllers
 
             return View(concentration);
         }
+
 
         // GET: Concentrations/Edit/5
         public ActionResult Edit(int? id)

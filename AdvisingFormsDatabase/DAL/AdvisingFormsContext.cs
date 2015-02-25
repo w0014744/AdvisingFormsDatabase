@@ -16,6 +16,7 @@ namespace AdvisingFormsDatabase.DAL
         public DbSet<Course> Courses { get; set; }
         public DbSet<BaseCourse> BaseCourses { get; set; }
         public DbSet<Concentration> Concentrations { get; set; }
+        public DbSet<Prerequisites> Prerequisites { get; set; }
 
     }
 }
