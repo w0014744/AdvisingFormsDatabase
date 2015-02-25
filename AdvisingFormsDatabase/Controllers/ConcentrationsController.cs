@@ -28,15 +28,12 @@ namespace AdvisingFormsDatabase.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Student advisingStudent = db.Students.Find(id);
-            Concentration concentration = db.Concentrations.Find(advisingStudent.ConcentrationID);
-            var courseTaken=db.Courses
-                                      .Where(r=>r.StudentID==id);
-       
+            Concentration concentration = db.Concentrations.Find(id);
             if (concentration == null)
             {
                 return HttpNotFound();
             }
+<<<<<<< HEAD
            
             List<BaseCourse> untakenCouses = new List<BaseCourse>();
             foreach(BaseCourse baseCourse in concentration.RequiredCourses ){
@@ -60,6 +57,9 @@ namespace AdvisingFormsDatabase.Controllers
 
             return View(untakenCouses);
 
+=======
+            return View(concentration);
+>>>>>>> parent of f539101... View of Untaken Couses
         }
 
         // GET: Concentrations/Create
