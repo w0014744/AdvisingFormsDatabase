@@ -174,12 +174,17 @@
     <Compile Include="Migrations\201502221350240_InitialCreate.Designer.cs">
       <DependentUpon>201502221350240_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502252117566_Prerequisites.cs" />
+    <Compile Include="Migrations\201502252117566_Prerequisites.Designer.cs">
+      <DependentUpon>201502252117566_Prerequisites.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BaseCourse.cs" />
     <Compile Include="Models\Concentration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Prerequisites.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -253,6 +258,7 @@
     <Content Include="Views\Courses\Index.cshtml" />
     <Content Include="Views\Student\AddCoursesVM.cshtml" />
     <Content Include="Views\Concentrations\_Concentrationview.cshtml" />
+    <Content Include="Views\Concentrations\fillGrade.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -267,6 +273,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201502221350240_InitialCreate.resx">
       <DependentUpon>201502221350240_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502252117566_Prerequisites.resx">
+      <DependentUpon>201502252117566_Prerequisites.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

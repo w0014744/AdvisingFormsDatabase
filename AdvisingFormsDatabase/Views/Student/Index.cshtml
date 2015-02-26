@@ -51,6 +51,7 @@
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID }) |
             @Html.ActionLink("Recommendation", "Details","Concentrations", new { id = item.ID },null ) |
+            @Html.ActionLink("Update Gread", "fillGrade", "Concentrations", new { id = item.ID }, null) |
             @Html.ActionLink("Add Courses", "AddCoursesVM", new { id = item.ID })
         </td>
     </tr>

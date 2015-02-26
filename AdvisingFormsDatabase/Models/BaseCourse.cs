@@ -16,11 +16,8 @@ namespace AdvisingFormsDatabase.Models
 
         public int? ParentItemId { get; set; }
 
-        public virtual ICollection<string> Prerequisites { get; set; }
+        public int PrerequisitesID { get; set; }
 
-        public BaseCourse()
-        {
-            Prerequisites = new List<string>();
-        }
+
     }
 }
