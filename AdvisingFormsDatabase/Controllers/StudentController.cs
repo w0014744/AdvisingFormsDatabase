@@ -33,13 +33,13 @@ namespace AdvisingFormsDatabase.Controllers
                 courseNames.Add(takenCourse.BaseCourse.Name);
             }
 
-            foreach (string prereq in course.Prerequisites)
-            {
-                if (!courseNames.Contains(prereq))
-                {
-                    prereqsMet = false;
-                }
-            }
+            //foreach (string prereq in course.Prerequisites)
+            //{
+            //    if (!courseNames.Contains(prereq))
+            //    {
+            //        prereqsMet = false;
+            //    }
+            //}
 
             if (prereqsMet)
             {
