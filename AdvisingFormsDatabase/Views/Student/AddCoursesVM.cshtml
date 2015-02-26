@@ -19,7 +19,9 @@
     <div>
         <p>Select the Courses You Have Taken</p>
     </div>
-
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken();
     <div>
         <table>
             <tr>
@@ -32,17 +34,23 @@
             </tr>
             @foreach(var course in Model.AvailCourses)
             {
+                var takenCourse = new AdvisingFormsDatabase.Models.Course();
+                takenCourse.BaseCourse = course;
+                takenCourse.Student = Model.Student;
+                Model.PossibleCourses.Add(takenCourse);
+                
                 <tr>
                     <td>@course.Name</td>
                     <td>@course.Department</td>
                     <td>@course.CourseNumber</td>
-                    <td><input type="checkbox" id="@course.ID taken" /></td>
-                    <td><input type="text" id="@course.ID semester"/></td>
-                    <td><input type="text" id="@course.ID grade" /></td>
+                    <td>@Html.CheckBoxFor(s => takenCourse.Selected)</td>
+                    <td>@Html.TextBoxFor(s => takenCourse.Semester)</td>
+                    <td>@Html.EditorFor(g => takenCourse.Grade)</td>
                 </tr>
             }
         </table>
+        <input type="submit" value="Add Classes Taken" class="btn btn-default" />
     </div>
-
+    }
 </body>
 </html>

@@ -1,0 +1,42 @@
+﻿@model AdvisingFormsDatabase.Models.Student
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ListCoursesTaken</title>
+</head>
+<body>
+    <div> 
+        <p>Name: @Model.FirstName @Model.LastName</p>
+        <p>W#: @Model.WNumber</p>
+    </div>
+    <div>
+        <p>Courses Taken</p>
+        <table>
+            <tr>
+                <th>Course</th>
+                <th>Department</th>
+                <th>Number</th>
+                <th>Semester</th>
+                <th>Grade</th>
+            </tr>
+            @foreach (var course in Model.CoursesTaken)
+            {
+                <tr>
+                    <td>@course.BaseCourse.Name</td>
+                    <td>@course.BaseCourse.Department</td>
+                    <td>@course.BaseCourse.CourseNumber</td>
+                    <td>@course.Semester</td>
+                    <td>@course.Grade</td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

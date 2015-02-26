@@ -17,6 +17,7 @@ namespace AdvisingFormsDatabase.Models
         public int BaseCourseID { get; set; }
         public string Semester { get; set; }
         public Grade? Grade { get; set; }
+        public bool Selected { get; set; }
 
         public BaseCourse BaseCourse { get; set; }
         public Student Student { get; set; }

@@ -121,6 +121,11 @@ namespace AdvisingFormsDatabase.Controllers
 
         public ActionResult AddCoursesVM (int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             Student student = db.Students.Find(id);
             List<BaseCourse> availibleCourses = db.BaseCourses.ToList();
 
@@ -129,9 +134,40 @@ namespace AdvisingFormsDatabase.Controllers
             return View(vModel);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddCoursesVM (AddCourseViewModel vModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Student stu = vModel.Student;
+                foreach (Course c in vModel.PossibleCourses)
+                {
+                    if (c.Selected)
+                    {
+                        stu.CoursesTaken.Add(c);
+                    }
+                }
+                db.Entry(stu).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("ListCoursesTaken", new { id = vModel.Student.ID });
 
+            }
 
+            return View(vModel);
+        }
 
+        public ActionResult ListCoursesTaken (int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Student student = db.Students.Find(id);
+
+            return View(student);
+        }
 
 
 
