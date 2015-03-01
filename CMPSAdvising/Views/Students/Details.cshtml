@@ -1,0 +1,87 @@
+﻿@model CMPSAdvising.Models.Student
+           @using CMPSAdvising.Models
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoursCompleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoursCompleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GPA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GPA)
+        </dd>
+
+    </dl>
+</div>
+
+<div>
+    <h3>Courses Taken</h3>
+    <table class="table table-bordered">
+        <tr>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Number</th>
+            <th>Semester</th>
+            <th>Grade</th>
+        </tr>
+        @foreach (Course course in ViewBag.CoursesTaken as IEnumerable<Course>)
+        {
+            if(course != null)
+            {
+            <tr>
+                <td>@course.BaseCourse.Name</td>
+                <td>@course.BaseCourse.Department</td>
+                <td>@course.BaseCourse.CourseNumber</td>
+                <td>@course.Semester</td>
+                <td>@course.Grade</td>
+            </tr>
+            }
+        }
+    </table>
+</div>
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
